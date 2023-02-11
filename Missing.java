@@ -30,8 +30,8 @@ public class NumberMissing {
     }
 }
 Output:
-PS D:\FSD\30-01-23> javac NumbersMissing.java
-PS D:\FSD\30-01-23> java NumbersMissing
+PS f:\Java Assignment> javac NumbersMissing.java
+PS f:\Java Assignment> java NumbersMissing
 Missing numbers are: 3
 
 
