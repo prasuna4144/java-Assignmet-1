@@ -1,0 +1,359 @@
+Question 1: Cumulative Sum of an Array:
+import java.util.Arrays;
+
+public class CumSum {
+    public static void main(String[] args) {
+        int[] arr = {25, 35, 12, 4, 36, 48};
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            arr[i] += arr[i - 1];
+        }
+        System.out.println("Cumulative Sum Array: " + Arrays.toString(arr));
+    }
+}
+
+Output:
+D:\fsd java> javac  CumSum.java
+PS D:\fsd java> java CumSum    
+Cumulative Sum Array: [25, 60, 72, 76, 112, 160]
+
+Question 2: Merge and Sort the elements in two Linked-List
+import java.util.LinkedList;
+import java.util.Collections;
+
+public class List {
+    static class Node {
+        int data;
+        Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    public static Node mergeLists(Node headA, Node headB) {
+        Node currentA = headA;
+        Node currentB = headB;
+        LinkedList<Integer> result = new LinkedList<>();
+
+        while (currentA != null || currentB != null) {
+            if (currentA != null) {
+                result.add(currentA.data);
+                currentA = currentA.next;
+            }
+            if (currentB != null) {
+                result.add(currentB.data);
+                currentB = currentB.next;
+            }
+        }
+
+        Collections.sort(result);
+
+        Node head = new Node(result.get(0));
+        Node current = head;
+        for (int i = 1; i < result.size(); i++) {
+            current.next = new Node(result.get(i));
+            current = current.next;
+        }
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+        Node headA = new Node(25);
+        headA.next = new Node(35);
+        headA.next.next = new Node(12);
+        headA.next.next.next = new Node(4);
+        headA.next.next.next.next = new Node(36);
+        headA.next.next.next.next.next = new Node(48);
+        Node headB = new Node(8);
+        headB.next = new Node(32);
+        headB.next.next = new Node(22);
+        headB.next.next.next = new Node(45);
+        headB.next.next.next.next = new Node(63);
+        headB.next.next.next.next.next = new Node(49);
+        Node result = mergeLists(headA, headB);
+        while (result != null) {
+            System.out.print(result.data + "->");
+            result = result.next;
+        }
+    }
+}
+
+
+Output:
+D:\fsd java> javac List.java
+PS D:\fsd java> java List
+4->8->12->22->25->32->35->36->45->48->49->63->
+Question 3:  Remove Duplicates from Linked-List
+class ListNode {
+    int val;
+    ListNode next;
+
+    ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+public class  Remove {
+    public static ListNode removeDuplicates(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            ListNode runner = current;
+            while (runner.next != null) {
+                if (runner.next.val == current.val) {
+                    runner.next = runner.next.next;
+                } else {
+                    runner = runner.next;
+                }
+            }
+            current = current.next;
+        }
+        return head;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(2);
+        head.next = new ListNode(5);
+        head.next.next = new ListNode(12);
+        head.next.next.next = new ListNode(2);
+        head.next.next.next.next = new ListNode(3);
+        head.next.next.next.next.next = new ListNode(5);
+        head.next.next.next.next.next.next = new ListNode(1);
+        head.next.next.next.next.next.next.next = new ListNode(2);
+        head.next.next.next.next.next.next.next.next = new ListNode(5);
+        head.next.next.next.next.next.next.next.next.next = new ListNode(5);
+
+        ListNode result = removeDuplicates(head);
+        while (result != null) {
+            System.out.print(result.val + "->");
+            result = result.next;
+        }
+    }
+}
+
+ Output:
+D:\fsd java> javac Remove.java
+PS D:\fsd java> java Remove
+2->5->12->3->1->
+Question 4:  Inheritance and File IO
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class ResidentialSociety {
+    String societyName;
+    String location;
+    String secretaryName;
+
+    public ResidentialSociety(String societyName, String location, String secretaryName) {
+        this.societyName = societyName;
+        this.location = location;
+        this.secretaryName = secretaryName;
+    }
+}
+
+class Building extends ResidentialSociety {
+    String buildingName;
+    int totalNumberOfApartments;
+    ArrayList<Apartment> apartments = new ArrayList<Apartment>();
+
+    public Building(String societyName, String location, String secretaryName, String buildingName, int totalNumberOfApartments) {
+        super(societyName, location, secretaryName);
+        this.buildingName = buildingName;
+        this.totalNumberOfApartments = totalNumberOfApartments;
+    }
+}
+
+class Apartment extends Building {
+    int apartmentNumber;
+    String ownerName;
+    String electricMeterNumber;
+
+    public Apartment(String societyName, String location, String secretaryName, String buildingName, int totalNumberOfApartments, int apartmentNumber, String ownerName, String electricMeterNumber) {
+        super(societyName, location, secretaryName, buildingName, totalNumberOfApartments);
+        this.apartmentNumber = apartmentNumber;
+        this.ownerName = ownerName;
+        this.electricMeterNumber = electricMeterNumber;
+    }
+}
+
+public class Residental {
+    static ArrayList<Apartment> apartments = new ArrayList<Apartment>();
+
+    public static void main(String[] args) {
+        // create a residential society object
+        ResidentialSociety residentialSociety = new ResidentialSociety("Galaxy-Apartment", "Banjara Hills, Hyderabad", "John Doe");
+
+        // create three building objects
+        Building buildingA = new Building(residentialSociety.societyName, residentialSociety.location, residentialSociety.secretaryName, "A", 10);
+        Building buildingB = new Building(residentialSociety.societyName, residentialSociety.location, residentialSociety.secretaryName, "B", 10);
+        Building buildingC = new Building(residentialSociety.societyName, residentialSociety.location, residentialSociety.secretaryName, "C", 10);
+
+        // read data from CSV file and initialize the apartments
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("apartments.csv"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] values = line.split(",");
+                int apartmentNumber = Integer.parseInt(values[0]);
+                String buildingName = values[1];
+                String ownerName = values[2];
+                String electricMeterNumber = values[3];
+
+                Apartment apartment = new Apartment(residentialSociety.societyName, residentialSociety.location, residentialSociety.secretaryName, buildingName, 10, apartmentNumber, ownerName, electricMeterNumber);
+                apartments.add(apartment);
+                            // add each apartment object to its respective building
+            if (buildingName.equals("A")) {
+                buildingA.apartments.add(apartment);
+            } else if (buildingName.equals("B")) {
+                buildingB.apartments.add(apartment);
+            } else if (buildingName.equals("C")) {
+                buildingC.apartments.add(apartment);
+            }
+        }
+        reader.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+    // menu-driven console application to view society, building and apartment information
+    Scanner sc = new Scanner(System.in);
+    int choice;
+    do {
+        System.out.println("\nResidential Society Information System");
+        System.out.println("1. View Apartment Details");
+        System.out.println("2. View Building Details");
+        System.out.println("3. View Society Details");
+        System.out.println("4. Exit");
+        System.out.print("Enter your choice: ");
+        choice = sc.nextInt();
+        switch (choice) {
+            case 1:
+                viewApartmentDetails();
+                break;
+            case 2:
+                viewBuildingDetails();
+                break;
+            case 3:
+                viewSocietyDetails();
+                break;
+            case 4:
+                System.out.println("Exiting the system...");
+                break;
+            default:
+                System.out.println("Invalid choice. Try again.");
+        }
+    } while (choice != 4);
+    sc.close();
+}
+
+// function to view apartment details
+public static void viewApartmentDetails() {
+    System.out.println("\nApartment Details");
+    System.out.println("Apartment Number\tBuilding Name\tOwner Name\tElectric Meter Number");
+    for (Apartment apartment : apartments) {
+        System.out.println(apartment.apartmentNumber + "\t\t" + apartment.buildingName + "\t\t" + apartment.ownerName + "\t\t" + apartment.electricMeterNumber);
+    }
+}
+
+// function to view building details
+public static void viewBuildingDetails() {
+    System.out.println("\nBuilding Details");
+    System.out.println("Building Name\tTotal Number of Apartments");
+    System.out.println("A\t\t10");
+    System.out.println("B\t\t10");
+    System.out.println("C\t\t10");
+}
+
+// function to view society details
+public static void viewSocietyDetails() {
+    System.out.println("\nSociety Details");
+    System.out.println("Society Name\tLocation\tSecretary Name");
+    System.out.println(apartments.get(0).societyName + "\t\t" + apartments.get(0).location + "\t" + apartments.get(0).secretaryName);
+}
+}
+
+Output:
+D:\fsd java> javac Residental.java
+PS D:\fsd java> java Residental   
+
+Residential Society Information System
+1. View Apartment Details
+2. View Building Details
+3. View Society Details
+4. Exit
+Enter your choice: 1
+
+Apartment Details
+Apartment Number        Building Name   Owner Name      Electric Meter Number
+1101            A               Parth Sarthi            5502
+1102            B               Vikram N                3255
+1103            C               Kaveri S                1200
+1104            A               Ashmi R         6754
+1105            B               Amit K          1234
+1106            C               Neha P          5678
+1107            A               Siddharth S             9012
+1108            B               Sakshi J                3456
+1109            C               Manoj K         7890
+1110            A               Ravindra M              2345
+1111            B               Ankur G         6789
+1112            C               Rajesh T                1234
+1113            A               Vineeth R               5678
+1114            B               Sanjana R               9012
+1115            C               Sarika P                3456
+1116            A               Sunil K         7890
+1117            B               Swetha M                2345
+1118            C               Vinod S         6789
+1119            A               Amita A         1234
+1120            B               Manoj B         5678
+1121            C               Raghavendra R           9012
+1122            A               Shwetha K               3456
+1123            B               Kamal N         7890
+1124            C               Arun V          2345
+1125            A               Pavitra R               6789
+1126            B               Vijay K         1234
+1127            C               Ranjith M               5678
+1128            A               Mansi S         9012
+1129            B               Lokesh N                3456
+1130            C               Vinayak R               7890
+
+Residential Society Information System
+1. View Apartment Details
+2. View Building Details
+3. View Society Details
+4. Exit
+Enter your choice: 2
+
+Building Details
+Building Name   Total Number of Apartments
+A               10
+B               10
+C               10
+
+Residential Society Information System
+1. View Apartment Details
+2. View Building Details
+3. View Society Details
+4. Exit
+Enter your choice: 3
+
+Society Details
+Society Name    Location        Secretary Name
+Galaxy-Apartment                Banjara Hills, Hyderabad        John Doe
+
+Residential Society Information System
+1. View Apartment Details
+2. View Building Details
+3. View Society Details
+4. Exit
+Enter your choice: 4
+Exiting the system...
