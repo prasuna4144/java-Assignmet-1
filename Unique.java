@@ -1,20 +1,4 @@
-Question 2:  Find unique numbers in array -
-Points: 5
-Skill Mapping: Basic
 
-
-Description: Consider an array with N number of repeated integers. Find and list down all unique numbers using Java.
-
-
-Sample input : arrNum = {1, 2, 2, 1, 3, 4, 3, 4, 1, 5, 3, 5}
-Output : 1, 2, 3, 4, 5 
-
-
-Sample input : arrNum = {1, 2, 2, 1, 6, 2, 3, 6, 1, 3, 3}
-Output : 1, 2, 3, 6
-
-
-Program:
 public class Unique {
     public static void main(String[] args) {
       int[] arrNum = {1, 2, 2, 1, 3, 4, 3, 4, 1, 5, 3, 5};
@@ -42,7 +26,3 @@ public class Unique {
 }
   } 
 
-Output:
-PS f:\Java Assignment> javac Unique.java
-PS f:\Java Assignment> java Unique
-Unique numbers are: 12345

@@ -1,17 +1,4 @@
-Question 3:   Inventory management System for a Small Electronics Store using Arrays
-Points: 10
-Skill Mapping: Intermediate
 
-
-Description: WAP to implement a command line java application for Inventory management System for a Small Electronics Store using Arrays. It should implement functionalities given in below menu - (10 points)
-1.	Product List - View list of all Products
-2.	Product count - View number of quantities available for a specific Product
-3.	View Product details – Product Specification, Cost and count available
-4.	Edit Product - Update Product Details
-5.	Update Inventory - Add/Delete Product Quantities
-
-
-Program:
 import java.util.*;
 class Inventory
 {
